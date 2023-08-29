@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = (sequelize, DataTypes) => {
   const Location = sequelize.define(
     "Location",
@@ -22,7 +20,6 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Location.associate = function (models) {
-    // associations can be defined here
     Location.belongsTo(models.Trip, {
       foreignKey: {
         name: "tripId",

@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = (sequelize, DataTypes) => {
   const Users = sequelize.define(
     "users",
@@ -20,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
         validate: {
-          isEmail: true, // allowing email format only
+          isEmail: true,
         },
       },
       password: {
