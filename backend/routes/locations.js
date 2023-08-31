@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const Location = require("../../db/models")["Location"];
+const Location = require("../db/models")["Location"];
 
 //GET ALL LOCATIONS FOR SPECIFIC TRIPID
 router.get("/", async function (req, res, next) {
