@@ -6,11 +6,11 @@ const logger = require("morgan");
 const { sequelize } = require("./db/models");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const tripsRouter = require("./routes/api/trips");
-const locationsRouter = require("./routes/api/locations");
-const usersRoutes = require("./routes/api/users");
-const indexRoutes = require("./routes/api/index");
-const yelpRoutes = require("./routes/api/yelp");
+const tripsRouter = require("./routes/trips");
+const locationsRouter = require("./routes/locations");
+const usersRoutes = require("./routes/users");
+const indexRoutes = require("./routes/index");
+const yelpRoutes = require("./routes/yelp");
 const { encryptPassword } = require("./controllers/userHelper");
 const Users = require("./db/models/")["users"];
 

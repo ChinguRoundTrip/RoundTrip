@@ -1,9 +1,9 @@
 var express = require("express");
 var router = express.Router();
 
-const userCtrl = require("../../controllers/userCtrl");
-const authentication = require("../../controllers/middleware/authentication");
-const Users = require("../../db/models/")["users"];
+const userCtrl = require("../controllers/userCtrl");
+const authentication = require("../controllers/middleware/authentication");
+const Users = require("../db/models/")["users"];
 
 // signup
 router.post("/sign-up", userCtrl.signUp);

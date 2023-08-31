@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const Trip = require("../../db/models")["Trip"];
+const Trip = require("../db/models")["Trip"];
 
 //GET ALL TRIPS (FILTER BY USER ID ONCE USER AUTH IS DONE)
 router.get("/", async function (req, res, next) {
