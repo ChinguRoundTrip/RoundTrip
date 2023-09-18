@@ -5,19 +5,32 @@ const cors = require("cors");
 const logger = require("morgan");
 const { sequelize } = require("./db/models");
 const session = require("express-session");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const tripsRouter = require("./routes/trips");
-const locationsRouter = require("./routes/locations");
-const usersRoutes = require("./routes/users");
-const indexRoutes = require("./routes/index");
-const yelpRoutes = require("./routes/yelp");
+const SequelizeStore = require("connect-session-sequelize")(
+  session.Store
+);
+const tripsRouter = require("./routes/api/trips");
+const locationsRouter = require("./routes/api/locations");
+const usersRoutes = require("./routes/api/users");
+const indexRoutes = require("./routes/api/index");
+const yelpRoutes = require("./routes/api/yelp");
 const { encryptPassword } = require("./controllers/userHelper");
 const Users = require("./db/models/")["users"];
 
 const app = express();
 
 app.use(logger("dev"));
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    allowedHeaders: [
+      "set-cookie",
+      "Content-Type",
+      "Access-Control-Allow-Origin",
+      "Access-Control-Allow-Credentials",
+    ],
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
