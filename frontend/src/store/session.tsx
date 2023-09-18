@@ -1,9 +1,10 @@
+import { AnyAction, Dispatch } from "@reduxjs/toolkit";
+
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
 interface User {
-  // Define the properties of the user object
   id: string;
   username: string;
   email: string;
@@ -35,22 +36,20 @@ interface SessionState {
 
 const initialState: SessionState = { user: null };
 
-export const authenticate = () => async (dispatch: AnyAction) => {
-  const response = await fetch("/api/auth/", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+export const authenticate =
+  () => async (dispatch: Dispatch<AnyAction>) => {
+    const response = await fetch("/api/auth/", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  if (response.ok) {
-    const data = await response.json();
-    if (data.errors) {
-      return;
+    if (response.ok) {
+      const data = await response.json();
+      if (data.errors) return;
+      dispatch(setUser(data));
     }
-
-    dispatch(setUser(data));
-  }
-};
+  };
 
 export const login =
   (username: string, password: string) =>
@@ -59,6 +58,7 @@ export const login =
       "http://localhost:8080/users/login",
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -87,15 +87,15 @@ export const logout = () => async (dispatch: Dispatch<AnyAction>) => {
   const response = await fetch(
     "http://localhost:8080/users/sign-out",
     {
-      headers: {
-        "Content-Type": "application/json",
-      },
+      method: "POST",
+      credentials: "include",
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
     }
   );
 
-  if (response.ok) {
-    dispatch(removeUser());
-  }
+  if (response.ok) dispatch(removeUser());
 };
 
 export const signUp =
@@ -117,7 +117,7 @@ export const signUp =
           username,
           email,
           password,
-          repeat_password: repeatPassword,
+          repeatPassword,
         }),
       }
     );
