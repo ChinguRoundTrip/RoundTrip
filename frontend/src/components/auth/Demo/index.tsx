@@ -9,7 +9,7 @@ function Demo() {
     const username = "jon";
     const password = "snow";
     try {
-      await dispatch(login(username, password));
+      dispatch(login(username, password));
     } catch (error) {
       console.error("Login error:", error);
     }
