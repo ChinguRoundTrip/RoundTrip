@@ -5,7 +5,9 @@ const cors = require("cors");
 const logger = require("morgan");
 const { sequelize } = require("./db/models");
 const session = require("express-session");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const SequelizeStore = require("connect-session-sequelize")(
+  session.Store
+);
 const tripsRouter = require("./routes/trips");
 const locationsRouter = require("./routes/locations");
 const usersRoutes = require("./routes/users");
@@ -17,7 +19,18 @@ const Users = require("./db/models/")["users"];
 const app = express();
 
 app.use(logger("dev"));
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    allowedHeaders: [
+      "set-cookie",
+      "Content-Type",
+      "Access-Control-Allow-Origin",
+      "Access-Control-Allow-Credentials",
+    ],
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
