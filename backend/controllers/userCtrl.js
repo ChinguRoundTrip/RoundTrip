@@ -9,9 +9,7 @@ const {
 exports.signUp = async (req, res) => {
   const { ...user } = req.body;
   if (Object.keys(user).length === 0)
-    return res
-      .status(400)
-      .json({ message: "request body can't be empty" });
+    return res.status(400).json({ message: "request body can't be empty" });
   // encrypt pass and save to database
   // should throw an error if email or username is already present or if pass encryption failed
   try {
@@ -33,16 +31,11 @@ exports.login = async (req, res) => {
   if (!username || !password)
     return res
       .status(400)
-      .json({
-        message: "body request must have username and password",
-      });
+      .json({ message: "body request mush have username and password" });
   try {
     const databaseUser = await Users.findOne({ where: { username } });
     if (databaseUser) {
-      const isPasswordValid = checkPassword(
-        password,
-        databaseUser.password
-      );
+      const isPasswordValid = checkPassword(password, databaseUser.password);
       if (!isPasswordValid) throw new Error("password is not valid");
       const token = createToken(username);
       res.cookie("token", token, { httpOnly: true, sameSite: "Lax" });
@@ -62,10 +55,7 @@ exports.deleteUser = async (req, res) => {
       .json({ error: "request body should have a username" });
   const deleteResponse = await Users.destroy({ where: { username } });
   return deleteResponse
-    ? res
-        .status(200)
-        .clearCookie("token")
-        .json({ message: "success" })
+    ? res.status(200).clearCookie("token").json({ message: "success" })
     : res.status(404).json({ error: "user was not found" });
 };
 
@@ -85,8 +75,7 @@ exports.getUser = async (req, res) => {
 
 exports.signOut = async (req, res) => {
   try {
-    if (!req.cookies.token)
-      throw new Error("you are not authenticated");
+    if (!req.cookies.token) throw new Error("you are not authenticated");
     res.clearCookie("token");
     res.status(200).json({ message: "success" });
   } catch (error) {

@@ -1,44 +1,34 @@
-import React, {
-  useState,
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-} from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { RootState, AppDispatch } from "../../../store/index";
 import { login } from "../../../store/session";
 import Demo from "../Demo";
 
 interface LoginFormProps {}
 
-const LoginForm: React.FC<LoginFormProps> = (props) => {
-  const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState("");
+const LoginForm: React.FC<LoginFormProps> = () => {
+  const [errors, setErrors] = useState<string[]>([]);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const user = useSelector((state: RootState) => state.session.user);
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
 
   const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = await dispatch(login(username, password));
+    const data = await dispatch(login(email, password));
     if (data) setErrors(data);
   };
 
-  const updateUsername = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+  const updateEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
 
   const updatePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  useEffect(() => {
-    if (user) navigate("/trips");
-  }, [user, navigate]);
-
-  if (user) return null;
+  // if (user) return <Redirect to="/" />;
 
   return (
     <>
@@ -54,16 +44,16 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
           <h2 className="form-title">Login</h2>
         </div>
         <div className="input-containers">
-          <div className="username-container">
-            <label className="username-label" htmlFor="username">
-              Username{" "}
+          <div className="email-container">
+            <label className="email-label" htmlFor="email">
+              Email{" "}
             </label>
             <input
               className="form-input-user"
-              name="username"
+              name="email"
               type="text"
-              value={username}
-              onChange={updateUsername}
+              value={email}
+              onChange={updateEmail}
               required={true}
             />
           </div>

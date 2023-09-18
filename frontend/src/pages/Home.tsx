@@ -13,7 +13,7 @@ import {
 
 const Home = () => {
   return (
-    <div style={{ marginTop: "70px", color: "#336B87" }}>
+    <div style={{ marginTop: "50px", color: "#336B87" }}>
       <Typography variant="h4">Welcome to RoundTrip</Typography>
       <br />
       <Carousel className="Example">
@@ -52,15 +52,13 @@ const Banner = (props: BannerProps) => {
   const totalItems: number = props.length ? props.length : 3;
   const mediaLength = totalItems - 1;
 
-  const items = [];
+  let items = [];
   const content = (
     <Grid item xs={4} key="content">
       <CardContent className="Content">
         <Typography className="Title">{props.item.Name}</Typography>
 
-        <Typography className="Caption">
-          {props.item.Caption}
-        </Typography>
+        <Typography className="Caption">{props.item.Caption}</Typography>
 
         <Button variant="outlined" className="ViewButton">
           View Now
@@ -74,14 +72,8 @@ const Banner = (props: BannerProps) => {
 
     const media = (
       <Grid item xs={4} key={item.Name}>
-        <CardMedia
-          className="Media"
-          image={item.Image}
-          title={item.Name}
-        >
-          <Typography className="MediaCaption">
-            {item.Name}
-          </Typography>
+        <CardMedia className="Media" image={item.Image} title={item.Name}>
+          <Typography className="MediaCaption">{item.Name}</Typography>
         </CardMedia>
       </Grid>
     );
