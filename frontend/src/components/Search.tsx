@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import {
   Container,
@@ -7,12 +7,29 @@ import {
   Button,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { RootStateType } from "../store";
 
-const Search: FC = () => {
+interface YelpData {
+  id: string;
+  name: string;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
+  image_url: string;
+  location: {
+    address1: string;
+  };
+  url: string;
+}
+
+export default function Search() {
   const [search, setSearch] = useState<string>("");
   const [searchResults, setSearchResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const session = useSelector((state: any) => state.session);
+  const session = useSelector(
+    (state: RootStateType) => state.session
+  );
   const serverRoute = "http://localhost:8080";
   const yelpEndpoint = `${serverRoute}/yelp`;
 
@@ -31,6 +48,7 @@ const Search: FC = () => {
       try {
         const response = await fetch(`${yelpEndpoint}/${search}`);
         const data = await response.json();
+        console.log(data);
 
         if (data.error) {
           setErrorMessage(data.error.description);
@@ -51,7 +69,7 @@ const Search: FC = () => {
     setSearch("");
   };
 
-  const handleAddToTrip = async (result) => {
+  const handleAddToTrip = async (result: YelpData) => {
     const name = result.name;
     const address = result.location.address1;
     // Get the data of the logged in user
@@ -139,6 +157,4 @@ const Search: FC = () => {
       ))}
     </Container>
   );
-};
-
-export default Search;
+}
