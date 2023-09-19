@@ -1,19 +1,19 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState, AppDispatch } from "../../../store/index";
+import { RootStateType, AppDispatch } from "../../../store/index";
 import { signUp } from "../../../store/session";
 // import Demo from "./Demo";
 
-interface SignUpFormProps {}
-
-const SignUpForm: React.FC<SignUpFormProps> = () => {
+export default function SignUpForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errors, setErrors] = useState<string[]>([]);
-  const user = useSelector((state: RootState) => state.session.user);
+  const user = useSelector(
+    (state: RootStateType) => state.session.user
+  );
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -115,6 +115,4 @@ const SignUpForm: React.FC<SignUpFormProps> = () => {
       </div>
     </form>
   );
-};
-
-export default SignUpForm;
+}
