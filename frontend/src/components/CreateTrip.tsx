@@ -1,15 +1,18 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import dayjs, { Dayjs } from "dayjs";
 import { Container, Button, Input, FormLabel } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { RootStateType } from "../store";
 
-const CreateTrip: FC = () => {
+export default function CreateTrip() {
   const [value, setValue] = React.useState<Dayjs | null>(dayjs());
   const [message, setMessage] = useState<string | null>(null);
-  const session = useSelector((state: any) => state.session);
+  const session = useSelector(
+    (state: RootStateType) => state.session
+  );
   const serverRoute = "http://localhost:8080";
 
   const handleSubmit = async (
@@ -20,12 +23,14 @@ const CreateTrip: FC = () => {
     const { user } = session;
 
     if (!user) {
-      setErrorMessage("You must be logged in to add to a trip");
+      setMessage("You must be logged in to add to a trip");
       return;
     }
 
     const userId = user.user.id;
-    const tripTitle = event.target.elements.title.value;
+    const tripTitle = (
+      event.target.elements.namedItem("title") as HTMLInputElement
+    )?.value;
     const tripDate = value?.format("YYYY-MM-DD");
 
     try {
@@ -77,6 +82,4 @@ const CreateTrip: FC = () => {
       </Container>
     </div>
   );
-};
-
-export default CreateTrip;
+}

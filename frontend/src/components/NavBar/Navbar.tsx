@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./NavBar.css";
 
-const Navbar = () => {
+export default function Navbar() {
   const dispatch: AppDispatch = useDispatch();
   const [isOpen, setOpen] = useState(false);
   const user = useSelector(
@@ -92,6 +92,4 @@ const Navbar = () => {
       )}
     </div>
   );
-};
-
-export default Navbar;
+}
