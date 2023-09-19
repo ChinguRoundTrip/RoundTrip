@@ -32,7 +32,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between px-5">
         <Link to="/">
           <img
-            src="../../public/RoundTrip.png"
+            src="/RoundTrip.png"
             alt="logo"
             width={100}
             height={100}
