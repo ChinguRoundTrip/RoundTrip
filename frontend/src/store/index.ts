@@ -1,11 +1,8 @@
-import {
-  combineReducers,
-  configureStore,
-  getDefaultMiddleware,
-} from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import thunk, { ThunkMiddleware } from "redux-thunk";
 import logger from "redux-logger";
-import sessionReducer, { SessionState } from "./session";
+import { sessionReducer } from "../types/session";
+import { SessionState } from "../types/session";
 
 interface RootState {
   session: SessionState;
