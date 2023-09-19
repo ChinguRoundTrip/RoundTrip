@@ -32,7 +32,7 @@ const locations = [
   },
 ];
 
-const TripGoogleMaps: React.FC = () => {
+export default function TripGoogleMaps() {
   const center = useMemo(
     () => ({ lat: 37.09024, lng: -95.712891 }),
     []
@@ -63,6 +63,4 @@ const TripGoogleMaps: React.FC = () => {
   ) : (
     <div>Loading...</div>
   );
-};
-
-export default TripGoogleMaps;
+}
