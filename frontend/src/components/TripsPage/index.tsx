@@ -1,4 +1,3 @@
-import React from "react";
 import TripGoogleMaps from "../GoogleMaps/index";
 import "./Trips.css";
 import CreateTrip from "../CreateTrip";

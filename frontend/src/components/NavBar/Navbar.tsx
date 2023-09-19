@@ -30,7 +30,7 @@ export default function Navbar() {
   return (
     <div className="h-[80px] w-[100%] bg-green">
       <div className="flex items-center justify-between px-5">
-        <Link to="/home">
+        <Link to="/">
           <img
             src="../../public/RoundTrip.png"
             alt="logo"
