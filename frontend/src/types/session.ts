@@ -1,9 +1,12 @@
 // types and interfaces
 
 export interface User {
-  id: string;
-  username: string;
-  email: string;
+  user: {
+    email: string;
+    id: string;
+    password: string;
+    username: string;
+  };
 }
 
 export enum SessionActionTypes {

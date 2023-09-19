@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import LoginFormModal from "../auth/Login/LoginFormModal";
 import SignUpFormModal from "../auth/SignUp/SignUpFormModal";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/index";
+import { AppDispatch, RootStateType } from "../../store";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import { useNavigate } from "react-router-dom";
@@ -12,16 +12,18 @@ import { useNavigate } from "react-router-dom";
 import "./NavBar.css";
 
 const Navbar = () => {
+  const dispatch: AppDispatch = useDispatch();
   const [isOpen, setOpen] = useState(false);
-  const user = useSelector((state: RootState) => state.session.user);
+  const user = useSelector(
+    (state: RootStateType) => state.session.user
+  );
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   console.log("user::", user);
 
   const onLogout = async () => {
     // e.preventDefault();
-    await dispatch(logout());
+    dispatch(logout());
     navigate("/");
   };
 
@@ -47,7 +49,7 @@ const Navbar = () => {
             {user && (
               <>
                 <h3 className="welcome-title">
-                  Hello, {user?.user?.username}!
+                  Hello, {user?.user.username}!
                 </h3>
                 <Hamburger toggled={isOpen} toggle={setOpen} />
               </>
