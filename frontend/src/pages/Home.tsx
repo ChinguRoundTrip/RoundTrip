@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "../style/Home.scss";
 
@@ -11,7 +10,7 @@ import {
   Button,
 } from "@mui/material";
 
-const Home = () => {
+export default function Home() {
   return (
     <div style={{ marginTop: "70px", color: "#336B87" }}>
       <Typography variant="h4">Welcome to RoundTrip</Typography>
@@ -30,7 +29,7 @@ const Home = () => {
       <br />
     </div>
   );
-};
+}
 
 type Item = {
   Name: string;
@@ -159,5 +158,3 @@ const items: Item[] = [
     ],
   },
 ];
-
-export default Home;

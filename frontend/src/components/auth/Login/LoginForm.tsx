@@ -1,22 +1,17 @@
-import React, {
-  useState,
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-} from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState, AppDispatch } from "../../../store/index";
+import { RootStateType, AppDispatch } from "../../../store/index";
 import { login } from "../../../store/session";
 import Demo from "../Demo";
 
-interface LoginFormProps {}
-
-const LoginForm: React.FC<LoginFormProps> = (props) => {
+export default function LoginForm() {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const user = useSelector((state: RootState) => state.session.user);
+  const user = useSelector(
+    (state: RootStateType) => state.session.user
+  );
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -88,6 +83,4 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
       </form>
     </>
   );
-};
-
-export default LoginForm;
+}

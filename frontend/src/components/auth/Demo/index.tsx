@@ -1,9 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../../store/session";
+import { AppDispatch } from "../../../store";
 
-function Demo() {
-  const dispatch = useDispatch();
+export default function Demo() {
+  const dispatch: AppDispatch = useDispatch();
   const demoLogin = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     const username = "jon";
@@ -21,5 +22,3 @@ function Demo() {
     </button>
   );
 }
-
-export default Demo;

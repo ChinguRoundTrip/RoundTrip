@@ -4,33 +4,35 @@ import { Link } from "react-router-dom";
 import LoginFormModal from "../auth/Login/LoginFormModal";
 import SignUpFormModal from "../auth/SignUp/SignUpFormModal";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/index";
+import { AppDispatch, RootStateType } from "../../store";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import { useNavigate } from "react-router-dom";
 
 import "./NavBar.css";
 
-const Navbar = () => {
+export default function Navbar() {
+  const dispatch: AppDispatch = useDispatch();
   const [isOpen, setOpen] = useState(false);
-  const user = useSelector((state: RootState) => state.session.user);
+  const user = useSelector(
+    (state: RootStateType) => state.session.user
+  );
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   console.log("user::", user);
 
   const onLogout = async () => {
     // e.preventDefault();
-    await dispatch(logout());
+    dispatch(logout());
     navigate("/");
   };
 
   return (
     <div className="h-[80px] w-[100%] bg-green">
       <div className="flex items-center justify-between px-5">
-        <Link to="/home">
+        <Link to="/">
           <img
-            src="../../public/RoundTrip.png"
+            src="/RoundTrip.png"
             alt="logo"
             width={100}
             height={100}
@@ -47,7 +49,7 @@ const Navbar = () => {
             {user && (
               <>
                 <h3 className="welcome-title">
-                  Hello, {user?.user?.username}!
+                  Hello, {user?.user.username}!
                 </h3>
                 <Hamburger toggled={isOpen} toggle={setOpen} />
               </>
@@ -90,6 +92,4 @@ const Navbar = () => {
       )}
     </div>
   );
-};
-
-export default Navbar;
+}

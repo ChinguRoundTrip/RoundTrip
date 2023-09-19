@@ -12,27 +12,27 @@ const containerStyle = {
   width: "100%",
 };
 
-// // TESTING DATA
-// const locations = [
-//   {
-//     lat: 37.772,
-//     lng: -122.214,
-//   },
-//   {
-//     lat: 37.672,
-//     lng: -122.219,
-//   },
-//   {
-//     lat: 37.832,
-//     lng: -122.424,
-//   },
-//   {
-//     lat: 42.962891037731644,
-//     lng: -85.67038868154219,
-//   },
-// ];
+// TESTING DATA
+const locations = [
+  {
+    lat: 37.772,
+    lng: -122.214,
+  },
+  {
+    lat: 37.672,
+    lng: -122.219,
+  },
+  {
+    lat: 37.832,
+    lng: -122.424,
+  },
+  {
+    lat: 42.962891037731644,
+    lng: -85.67038868154219,
+  },
+];
 
-const TripGoogleMaps: React.FC = () => {
+export default function TripGoogleMaps() {
   const center = useMemo(
     () => ({ lat: 37.09024, lng: -95.712891 }),
     []
@@ -63,6 +63,4 @@ const TripGoogleMaps: React.FC = () => {
   ) : (
     <div>Loading...</div>
   );
-};
-
-export default TripGoogleMaps;
+}
