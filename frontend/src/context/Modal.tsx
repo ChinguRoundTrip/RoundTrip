@@ -8,13 +8,15 @@ import React, {
 import ReactDOM from "react-dom";
 import "./Modal.css";
 
-export const ModalContext = createContext<any>(null);
+type ModalContextValue = HTMLDivElement | null;
 
-interface ModalProviderProps {
+export const ModalContext = createContext<ModalContextValue>(null);
+
+export function ModalProvider({
+  children,
+}: {
   children: React.ReactNode;
-}
-
-export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
+}) {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const [value, setValue] = useState<HTMLDivElement | null>(null);
 
@@ -24,28 +26,35 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
 
   return (
     <>
-      <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
+      <ModalContext.Provider value={value}>
+        {children}
+      </ModalContext.Provider>
       <div ref={modalRef} />
     </>
   );
-};
-
-interface ModalProps {
-  onClose: () => void;
-  children: React.ReactNode;
 }
 
-export const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
+export function Modal({
+  onClose,
+  children,
+}: {
+  onClose: () => void;
+  children: React.ReactNode;
+}) {
   const modalNode = useContext(ModalContext);
   if (!modalNode) return null;
 
   return ReactDOM.createPortal(
     <div id="modal">
-      <div id="modal-background" onClick={onClose} className="fade-in" />
+      <div
+        id="modal-background"
+        onClick={onClose}
+        className="fade-in"
+      />
       <div id="modal-content" className="fade-in-grow">
         {children}
       </div>
     </div>,
     modalNode
   );
-};
+}
