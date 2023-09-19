@@ -3,14 +3,15 @@ import { Modal } from "../../../context/Modal";
 import SignUpForm from "./SignUpForm";
 import "../auth.css";
 
-interface SignUpModalProps {}
-
-const SignUpModal: React.FC<SignUpModalProps> = () => {
+export default function SignUpModal() {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button id="auth-modal-main-page" onClick={() => setShowModal(true)}>
+      <button
+        id="auth-modal-main-page"
+        onClick={() => setShowModal(true)}
+      >
         Sign Up
       </button>
       {showModal && (
@@ -20,6 +21,4 @@ const SignUpModal: React.FC<SignUpModalProps> = () => {
       )}
     </>
   );
-};
-
-export default SignUpModal;
+}
