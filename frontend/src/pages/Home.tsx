@@ -10,7 +10,10 @@ import {
   Button,
 } from "@mui/material";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Home() {
+
   return (
     <div style={{ marginTop: "70px", color: "#336B87" }}>
       <Typography variant="h4">Welcome to RoundTrip</Typography>
@@ -51,6 +54,13 @@ const Banner = (props: BannerProps) => {
   const totalItems: number = props.length ? props.length : 3;
   const mediaLength = totalItems - 1;
 
+  const navigate = useNavigate();
+
+  const onView = async () => {
+    // e.preventDefault()
+    navigate("/trips");
+  };
+
   const items = [];
   const content = (
     <Grid item xs={4} key="content">
@@ -61,7 +71,7 @@ const Banner = (props: BannerProps) => {
           {props.item.Caption}
         </Typography>
 
-        <Button variant="outlined" className="ViewButton">
+        <Button variant="outlined" className="ViewButton" onClick={onView}>
           View Now
         </Button>
       </CardContent>
