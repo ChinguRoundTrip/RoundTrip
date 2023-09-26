@@ -3,7 +3,7 @@ import '../style/globals.css'
 import TestingSidebar from "../components/TestingSidebar"
 import SessionProvider from "../components/SessionProvider";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
+import { authOptions } from "../pages/api/auth/[...nextauth]";
 import TestingLogin from "../components/TestingLogin";
 
 export default async function LandingPage({

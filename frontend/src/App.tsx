@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
+// import Sidebar from "./components/Sidebar";
+import TestingSidebar from "./components/TestingSidebar";
 import { Route, Routes } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
@@ -12,7 +14,9 @@ import Search from "./components/Search";
 function App() {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
+      {/* <Sidebar /> */}
+      <TestingSidebar />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
