@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 #header {
-  background-image: url("/public/Hero5.jpeg");
+  background-image: url("/public/Hero.jpeg");
   height: 500px;
   background-repeat: no-repeat;
   background-size: cover;
