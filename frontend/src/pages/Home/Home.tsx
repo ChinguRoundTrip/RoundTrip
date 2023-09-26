@@ -1,5 +1,7 @@
+import About from "./About";
+
 import Carousel from "react-material-ui-carousel";
-import "../style/Home.scss";
+import "../../style/Home.scss";
 
 import {
   Card,
@@ -16,7 +18,7 @@ export default function Home() {
 
   return (
     <div style={{ marginTop: "70px", color: "#336B87" }}>
-      <Typography variant="h4">Welcome to RoundTrip</Typography>
+      <About />
       <br />
       <Carousel className="Example">
         {items.map((item, index) => {
