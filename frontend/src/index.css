@@ -4,28 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: "Work Sans", sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 150%;
-}
-
-@media screen and (max-width: 400px) {
-  #features {
-    padding: 20px;
-    width: 80%;
-  }
-  #about,
-  #services,
-  #testimonials,
-  #team,
-  #contact {
-    width: 75%;
-    margin: 25px;
-  }
-}
-
 .about-text {
   font-family: "Work Sans", sans-serif;
   font-size: 20px;
