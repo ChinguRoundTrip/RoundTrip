@@ -1,4 +1,5 @@
 import About from "./About";
+import Header from "./Header";
 
 import Carousel from "react-material-ui-carousel";
 import "../../style/Home.scss";
@@ -18,6 +19,7 @@ export default function Home() {
 
   return (
     <div style={{ marginTop: "70px", color: "#336B87" }}>
+      <Header />
       <About />
       <br />
       <Carousel className="Example">
