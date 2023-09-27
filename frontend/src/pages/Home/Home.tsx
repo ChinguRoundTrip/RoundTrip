@@ -19,7 +19,6 @@ export default function Home() {
 
   return (
     <div style={{ marginTop: "70px", color: "#336B87" }}>
-      <Header />
       <About />
       <br />
       <Carousel className="Example">
@@ -34,6 +33,7 @@ export default function Home() {
         })}
       </Carousel>
       <br />
+      <Header />
     </div>
   );
 }
